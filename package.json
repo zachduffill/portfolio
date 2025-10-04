@@ -1,0 +1,19 @@
+{
+  "name": "zach.hu",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.37.0"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "maxmind": "^5.0.0"
+  }
+}

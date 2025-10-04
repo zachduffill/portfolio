@@ -1,40 +1,67 @@
-var grid;
-var overlay;
+var tileGrid;
+var spaceGrid;
+var bannerContent;
+var bannerOverlay;
 
 document.addEventListener('DOMContentLoaded', function () {
-    grid = document.getElementById("tile-grid");
-    overlay = document.getElementById("banner-overlay");
+    tileGrid = document.getElementById("tile-grid");
+    spaceGrid = document.getElementById("space-grid");
+    bannerContent = document.getElementById("banner-content");
+    bannerOverlay = document.getElementById("banner-overlay");
     genGrid(35);
 });
 
 function genGrid(tileSize) {
-    let gridsize = grid.getBoundingClientRect();
+    let gridsize = spaceGrid.getBoundingClientRect();
+
     let rows = 4;
-
-    grid.style.height = `${rows * (tileSize + 1)}px`;
-    overlay.style.height = `${rows * (tileSize + 1)}px`;
-    
     let cols = Math.floor(gridsize.width / tileSize);
-    grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    grid.innerHTML = ''; 
 
-    let animSpeed = cols/30;
+    let h = `${rows * (tileSize + 1)}px`;
+    let w = `${(cols + 1) * tileSize}px`;
+
+    tileGrid.style.height = h;
+    spaceGrid.style.height = h;
+    tileGrid.style.width = w;
+    spaceGrid.style.width = w;
+
+    bannerContent.style.width = w;
+    bannerContent.style.height = h;
+    bannerOverlay.style.width = w;
+    bannerOverlay.style.height = h;
+
+    spaceGrid.style.transform = `translate(${-(0.5 * tileSize)}px)`;
+    
+    tileGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    spaceGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+    tileGrid.innerHTML = '';
+    spaceGrid.innerHTML = '';
+
+    let animSpeed = cols/50;
 
     for (let i = 0; i < rows * cols; i++) {
+        const space = document.createElement('div');
+        space.className = 'space';
+
         const tile = document.createElement('div');
         tile.className = 'tile';
-
+    
         let d = i / cols
         let r = Math.floor(d);
         let c = ((d - r) * cols)
         //console.log(`row ${r}, col ${c}`)
-        tile.style.setProperty('--i', (r + c) / animSpeed);
+        let spaceK = ((r + c) / animSpeed) * 0.05;
+        let titleK = ((r + c+2.3) / animSpeed) * 0.05;
 
-        if (r == 1) {
-            
-            tile.appendChild(document.createTextNode("Tare"));
-        }
+        space.style.setProperty('--i', spaceK);
+        spaceGrid.appendChild(space);
 
-        grid.appendChild(tile);
+        tile.style.setProperty('--i', titleK);
+        tileGrid.appendChild(tile);
     }
+}
+
+function OnResize() {
+
 }

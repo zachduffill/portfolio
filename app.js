@@ -23,6 +23,9 @@ function GetLoc(req) {
     return lookup.get(ip);
 }
 
+const favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 ///////////
 // ROUTES
 

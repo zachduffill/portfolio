@@ -2,6 +2,37 @@ body {
     margin: 0;
     overflow-x: hidden;
     font-family: Arimo;
+    height:auto;
+    width:100vw;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden !important;
+}
+
+p {
+    font-family: Arimo;
+    font-size:1.45rem;
+    width: fit-content;
+    margin:0 auto;
+}
+
+a{
+    color: forestgreen;
+}
+
+.main {
+    position: relative;
+    height: auto;
+    width: auto;
+    margin: 5vh 5vw;
+    opacity: 0;
+    animation: FadeIn 2s forwards;
+    animation-delay: 4.5s;
 }
 
 .banner{
@@ -9,54 +40,58 @@ body {
     height: fit-content;
     background-color: white;
     position:relative;
+    user-select:none;
 }
 
 .banner-content {
-    position: absolute;
+    position: relative;
     z-index: 2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
+    width:100%;
 }
 
 .title-block {
     flex-grow: 0;
-    padding: 20px;
+    margin: auto 0 auto 40px;
 }
 
     .title-block h1 {
         margin: 0;
-        font-size: 60px;
+        font-size: 5vh;
         font-weight: bold;
     }
 
     .title-block h4 {
         margin: 0;
+        font-size: 1.5vh;
         white-space: nowrap;
         font-weight: bold;
     }
 
-.links-block {
-    margin: 10px 60px auto auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap:30px;
-    font-size:20px;
+.deer-container {
+    margin: auto 40px auto auto;
+    width: 13.8vh;
+    overflow:hidden;
 }
 
-.links-block i {
-    font-size: 25px;
-}
+    .deer-container:hover {
+        width: 15vh;
+    }
 
-.links-block a {
-    transform: translateY(2px);
-}
-
-.links-block h5 {
-    margin: 0;
-    font-weight: normal;
+.deer {
+    float:right;
+    width: 15vh;
+    opacity: 0.4;
+    image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges; /* Firefox                        */
+    image-rendering: -o-crisp-edges; /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Universal support since 2021   */
+    image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
 }
 
 .banner-overlay {
@@ -68,6 +103,7 @@ body {
     box-shadow: inset 0px 0px 20px rgba(0,0,0,0.6);
     display: flex;
     z-index: 3;
+    pointer-events: none;
 }
 
 .tile-grid {
@@ -77,6 +113,7 @@ body {
     display: grid;
     width: 100%;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .space-grid {
@@ -86,7 +123,8 @@ body {
     display: grid;
     width: 100%;
     overflow: hidden;
-    z-index:4;
+    z-index: 4;
+    pointer-events: none;
 }
 
 .space {
@@ -94,7 +132,7 @@ body {
     aspect-ratio: 1 / 1;
     transform: rotateY(90deg);
     animation: SpaceFlip 0.5s forwards;
-    animation-delay: calc(var(--i) * 1s + 0s);
+    animation-delay: calc(var(--i) * 1s + 0.5s);
     backface-visibility: hidden;
 }
 
@@ -102,7 +140,7 @@ body {
     background-color: white;
     aspect-ratio: 1 / 1;
     animation: TileFlip 0.5s forwards;
-    animation-delay: calc(var(--i) * 1s + 0s);
+    animation-delay: calc(var(--i) * 1s + 0.5s);
     backface-visibility: hidden;
     box-sizing: border-box;
     z-index: 3;
@@ -128,16 +166,22 @@ body {
 @keyframes SpaceFlip {
     0% {
         transform: rotateY(90deg);
-        background: black;
     }
 
     50% {
         transform: rotateY(00deg);
-        background: black;
     }
 
     100% {
         transform: rotateY(90deg);
-        background: black;
+    }
+}
+
+@keyframes FadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }

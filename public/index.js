@@ -2,20 +2,25 @@ var tileGrid;
 var spaceGrid;
 var bannerContent;
 var bannerOverlay;
+var main;
+
+var deerCont;
 
 document.addEventListener('DOMContentLoaded', function () {
     tileGrid = document.getElementById("tile-grid");
     spaceGrid = document.getElementById("space-grid");
     bannerContent = document.getElementById("banner-content");
     bannerOverlay = document.getElementById("banner-overlay");
-    genGrid(35);
+    genGrid(screen.height / 38);
+
+    deerCont = document.getElementById("deer-container");
 });
 
 function genGrid(tileSize) {
     let gridsize = spaceGrid.getBoundingClientRect();
 
     let rows = 4;
-    let cols = Math.floor(gridsize.width / tileSize);
+    let cols = Math.floor(screen.width*1.5 / tileSize);
 
     let h = `${rows * (tileSize + 1)}px`;
     let w = `${(cols + 1) * tileSize}px`;
@@ -25,7 +30,6 @@ function genGrid(tileSize) {
     tileGrid.style.width = w;
     spaceGrid.style.width = w;
 
-    bannerContent.style.width = w;
     bannerContent.style.height = h;
     bannerOverlay.style.width = w;
     bannerOverlay.style.height = h;
@@ -38,8 +42,10 @@ function genGrid(tileSize) {
     tileGrid.innerHTML = '';
     spaceGrid.innerHTML = '';
 
-    let animSpeed = cols/50;
+    let animSpeed = 0.51;
 
+    let spaceK;
+    let titleK;
     for (let i = 0; i < rows * cols; i++) {
         const space = document.createElement('div');
         space.className = 'space';
@@ -49,17 +55,24 @@ function genGrid(tileSize) {
     
         let d = i / cols
         let r = Math.floor(d);
-        let c = ((d - r) * cols)
+        let c = Math.round((d - r) * cols)
         //console.log(`row ${r}, col ${c}`)
-        let spaceK = ((r + c) / animSpeed) * 0.05;
-        let titleK = ((r + c+2.3) / animSpeed) * 0.05;
+
+        spaceK = ((r + c) / animSpeed) * 0.05;
+        titleK = ((r + c+2.3) / animSpeed) * 0.05;
 
         space.style.setProperty('--i', spaceK);
         spaceGrid.appendChild(space);
-
+        
         tile.style.setProperty('--i', titleK);
         tileGrid.appendChild(tile);
     }
+
+    setTimeout(function () {
+        if (spaceGrid && spaceGrid.parentNode) {
+            spaceGrid.parentNode.removeChild(spaceGrid);
+        }
+    }, spaceK*1000+500);
 }
 
 function OnResize() {

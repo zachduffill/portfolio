@@ -2,7 +2,6 @@ var tileGrid;
 var spaceGrid;
 var bannerContent;
 var bannerOverlay;
-var main;
 
 document.addEventListener('DOMContentLoaded', function () {
     tileGrid = document.getElementById("tile-grid");
@@ -10,35 +9,15 @@ document.addEventListener('DOMContentLoaded', function () {
     bannerContent = document.getElementById("banner-content");
     bannerOverlay = document.getElementById("banner-overlay");
 
-    var w = screen.width; var h = screen.height;
-    var DPR = window.devicePixelRatio;
-    w = Math.round(DPR * w);
-    h = Math.round(DPR * h);
-
-    let tileSize = h / 50;
-    let rows = 4;
-    let cols = Math.floor((w * 1.5) / tileSize);
-
-    document.documentElement.style.setProperty("--ivh", `${h}px`)
-    genGrid(tileSize, rows, cols);
-
-    window.onresize = onResize;
-
-    //document.getElementById("test").innerHTML = `w:${w}, h:${h}`;
+    genGrid();
+    window.onresize = recalc;
 });
 
-function genGrid(tileSize,rows,cols) {
-    let h = `${rows * (tileSize + 1)}px`;
-    let w = `${(cols + 1) * tileSize}px`;
-
-    tileGrid.style.height = h;
-    spaceGrid.style.height = h;
-    tileGrid.style.width = w;
-    spaceGrid.style.width = w;
-
-    bannerContent.style.height = h;
-    bannerOverlay.style.width = w;
-    bannerOverlay.style.height = h;
+function genGrid() {
+    let d = recalc();
+    let cols = d.cols;
+    let rows = d.rows;
+    let tileSize = d.tileSize;
 
     spaceGrid.style.transform = `translate(${-(0.5 * tileSize)}px)`;
     
@@ -62,7 +41,6 @@ function genGrid(tileSize,rows,cols) {
         let d = i / cols
         let r = Math.floor(d);
         let c = Math.round((d - r) * cols)
-        //console.log(`row ${r}, col ${c}`)
 
         spaceK = ((r + c) / animSpeed) * 0.05;
         titleK = ((r + c+2.3) / animSpeed) * 0.05;
@@ -74,6 +52,8 @@ function genGrid(tileSize,rows,cols) {
         tileGrid.appendChild(tile);
     }
 
+    tilesCreated = true;
+
     setTimeout(function () {
         if (spaceGrid && spaceGrid.parentNode) {
             spaceGrid.parentNode.removeChild(spaceGrid);
@@ -81,7 +61,7 @@ function genGrid(tileSize,rows,cols) {
     }, spaceK*1000+500);
 }
 
-function onResize()
+function recalc()
 {
     var w = screen.width; var h = screen.height;
     var DPR = window.devicePixelRatio;
@@ -105,4 +85,6 @@ function onResize()
     bannerContent.style.height = h;
     bannerOverlay.style.width = w;
     bannerOverlay.style.height = h;
+
+    return { tileSize: tileSize, rows: rows, cols: cols }
 }

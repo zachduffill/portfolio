@@ -1,3 +1,7 @@
+:root {
+    --ivh: 100vh;
+}
+
 body {
     margin: 0;
     overflow-x: hidden;
@@ -29,10 +33,10 @@ a{
     position: relative;
     height: auto;
     width: auto;
-    margin: 5vh 5vw;
+    margin: 50px 5vw;
     opacity: 0;
-    animation: FadeIn 2s forwards;
-    animation-delay: 4.5s;
+    animation: FadeIn 5s forwards;
+    animation-delay: 0s;
 }
 
 .banner{
@@ -60,30 +64,30 @@ a{
 
     .title-block h1 {
         margin: 0;
-        font-size: 5vh;
+        font-size: calc(var(--ivh) * 0.03);
         font-weight: bold;
     }
 
     .title-block h4 {
         margin: 0;
-        font-size: 1.5vh;
+        font-size: calc(var(--ivh) * 0.01);
         white-space: nowrap;
         font-weight: bold;
     }
 
 .deer-container {
     margin: auto 40px auto auto;
-    width: 13.8vh;
-    overflow:hidden;
+    width: calc(var(--ivh) * 0.0865);
+    overflow: hidden;
 }
 
     .deer-container:hover {
-        width: 15vh;
+        width: calc(var(--ivh) * 0.094);
     }
 
 .deer {
-    float:right;
-    width: 15vh;
+    float: right;
+    width: calc(var(--ivh) * 0.094);
     opacity: 0.4;
     image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
     image-rendering: -moz-crisp-edges; /* Firefox                        */

@@ -4,24 +4,30 @@ var bannerContent;
 var bannerOverlay;
 var main;
 
-var deerCont;
-
 document.addEventListener('DOMContentLoaded', function () {
     tileGrid = document.getElementById("tile-grid");
     spaceGrid = document.getElementById("space-grid");
     bannerContent = document.getElementById("banner-content");
     bannerOverlay = document.getElementById("banner-overlay");
-    genGrid(screen.height / 38);
 
-    deerCont = document.getElementById("deer-container");
+    var w = screen.width; var h = screen.height;
+    var DPR = window.devicePixelRatio;
+    w = Math.round(DPR * w);
+    h = Math.round(DPR * h);
+
+    let tileSize = h / 50;
+    let rows = 4;
+    let cols = Math.floor((w * 1.5) / tileSize);
+
+    document.documentElement.style.setProperty("--ivh", `${h}px`)
+    genGrid(tileSize, rows, cols);
+
+    window.onresize = onResize;
+
+    //document.getElementById("test").innerHTML = `w:${w}, h:${h}`;
 });
 
-function genGrid(tileSize) {
-    let gridsize = spaceGrid.getBoundingClientRect();
-
-    let rows = 4;
-    let cols = Math.floor(screen.width*1.5 / tileSize);
-
+function genGrid(tileSize,rows,cols) {
     let h = `${rows * (tileSize + 1)}px`;
     let w = `${(cols + 1) * tileSize}px`;
 
@@ -75,6 +81,28 @@ function genGrid(tileSize) {
     }, spaceK*1000+500);
 }
 
-function OnResize() {
+function onResize()
+{
+    var w = screen.width; var h = screen.height;
+    var DPR = window.devicePixelRatio;
+    w = Math.round(DPR * w);
+    h = Math.round(DPR * h);
 
+    document.documentElement.style.setProperty("--ivh", `${h}px`)
+
+    let tileSize = h / 50;
+    let rows = 4;
+    let cols = Math.floor((w * 1.5) / tileSize);
+
+    h = `${rows * (tileSize + 1)}px`;
+    w = `${(cols + 1) * tileSize}px`;
+
+    tileGrid.style.height = h;
+    spaceGrid.style.height = h;
+    tileGrid.style.width = w;
+    spaceGrid.style.width = w;
+
+    bannerContent.style.height = h;
+    bannerOverlay.style.width = w;
+    bannerOverlay.style.height = h;
 }

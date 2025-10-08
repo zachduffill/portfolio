@@ -1,11 +1,13 @@
 var tileGrid;
 var spaceGrid;
+var banner;
 var bannerContent;
 var bannerOverlay;
 
 document.addEventListener('DOMContentLoaded', function () {
     tileGrid = document.getElementById("tile-grid");
     spaceGrid = document.getElementById("space-grid");
+    banner = document.getElementById("banner");
     bannerContent = document.getElementById("banner-content");
     bannerOverlay = document.getElementById("banner-overlay");
 
@@ -52,7 +54,7 @@ function genGrid() {
         tileGrid.appendChild(tile);
     }
 
-    tilesCreated = true;
+    banner.style.display = "inherit";
 
     setTimeout(function () {
         if (spaceGrid && spaceGrid.parentNode) {

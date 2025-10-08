@@ -64,6 +64,7 @@ a{
     background-color: white;
     position:relative;
     user-select:none;
+    display:none;
 }
 
 .banner-content {

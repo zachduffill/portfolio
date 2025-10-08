@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const fs = require('fs');
+/*const fs = require('fs');
 const ipDbPath = path.join(process.cwd(), 'private', 'GeoLite2-Country.mmdb');
 
 const maxmind = require('maxmind');
@@ -24,7 +24,7 @@ function GetLoc(req) {
         return -1;
     }
     return lookup.get(ip);
-}
+}*/
 
 const favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,15 +34,16 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Redirect country from root
 app.get('/', (req, res) => {
-    let loc = GetLoc(req);
+    /*let loc = GetLoc(req);
     if (loc == -1) {
         res.status(500).send('GeoLite2 database not loaded');
         return;
-    }
+    }*/
 
     let countryISO;
+    countryISO = req.headers['x-vercel-ip-country'];
 
-    if (loc) countryISO = loc["country"]["iso_code"];
+    //if (loc) countryISO = loc["country"]["iso_code"];
     if (countryISO == "HU") res.redirect("/hu");
     else res.redirect("/en");
 });

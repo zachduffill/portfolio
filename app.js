@@ -6,7 +6,6 @@ const port = 3000;
 
 const fs = require('fs');
 const ipDbPath = path.join(process.cwd(), 'private', 'GeoLite2-Country.mmdb');
-const ipDbBuffer = fs.readFileSync(ipDbPath);
 
 const maxmind = require('maxmind');
 var lookup;

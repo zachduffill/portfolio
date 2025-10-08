@@ -4,46 +4,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-/*const fs = require('fs');
-const ipDbPath = path.join(process.cwd(), 'private', 'GeoLite2-Country.mmdb');
-
-const maxmind = require('maxmind');
-var lookup;
-maxmind.open(ipDbPath)
-    .then((countryLookup) => {
-        lookup = countryLookup;
-        console.log("GeoLite2 database loaded")
-    })
-    .catch((err) => {
-        console.error('Failed to load GeoLite2 database:', err);
-    });
-
-function GetLoc(req) {
-    const ip = req.query.ip || req.ip;
-    if (!lookup) {
-        return -1;
-    }
-    return lookup.get(ip);
-}*/
-
 const favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-///////////
-// ROUTES
-
 // Redirect country from root
 app.get('/', (req, res) => {
-    /*let loc = GetLoc(req);
-    if (loc == -1) {
-        res.status(500).send('GeoLite2 database not loaded');
-        return;
-    }*/
-
-    let countryISO;
-    countryISO = req.headers['x-vercel-ip-country'];
-
-    //if (loc) countryISO = loc["country"]["iso_code"];
+    let countryISO = req.headers['x-vercel-ip-country'];
     if (countryISO == "HU") res.redirect("/hu");
     else res.redirect("/en");
 });
@@ -57,9 +23,6 @@ app.get('/hu', (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-// used for testing ip redirection
-//app.set('trust proxy', true);
 
 app.listen(port, () => {
     console.log(`Express app listening at http://localhost:${port}`);

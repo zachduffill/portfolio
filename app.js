@@ -4,14 +4,13 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-import fs from 'fs';
-
+const fs = require('fs');
 const ipDbPath = path.join(process.cwd(), 'private', 'GeoLite2-Country.mmdb');
 const ipDbBuffer = fs.readFileSync(ipDbPath);
 
 const maxmind = require('maxmind');
 var lookup;
-maxmind.open(ipDbBuffer)
+maxmind.open(ipDbPath)
     .then((countryLookup) => {
         lookup = countryLookup;
         console.log("GeoLite2 database loaded")

@@ -10,6 +10,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // Redirect country from root
 app.get('/', (req, res) => {
     let countryISO = req.headers['x-vercel-ip-country'];
+
     if (countryISO == "HU") res.redirect("/hu");
     else res.redirect("/en");
 });

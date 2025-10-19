@@ -24,6 +24,10 @@ app.get('/hu', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.hu.html'));
 });
 
+app.get('/hu', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'cv.pdf'));
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, () => {

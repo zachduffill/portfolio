@@ -24,7 +24,7 @@ app.get('/hu', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.hu.html'));
 });
 
-app.get('/hu', (req, res) => {
+app.get('/cv', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'cv.pdf'));
 });
 

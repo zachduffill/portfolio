@@ -16,6 +16,8 @@ html, body {
     width: 100%;
     height: 100%;
     overflow-x: hidden !important;
+    display: flex;
+    flex-direction: column;
 }
 
 p {
@@ -46,11 +48,16 @@ a{
 
 .main {
     position: relative;
-    height: auto;
+    flex: 1;
     width: auto;
+    background-color: rgb(231, 231, 231);
+    color: black;
+}
+
+.main-cont {
     margin: 50px 5vw;
+    animation: FadeIn 0s forwards;
     opacity: 0;
-    animation: FadeIn 5s forwards;
     animation-delay: 0s;
 }
 
@@ -61,6 +68,7 @@ a{
     position:relative;
     user-select:none;
     display:none;
+    flex-shrink: 0;
 }
 
 .banner-content {

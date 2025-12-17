@@ -55,10 +55,31 @@ a{
 }
 
 .main-cont {
-    margin: 50px 5vw;
+    margin: 25px 5vw;
     animation: FadeIn 0s forwards;
     opacity: 0;
     animation-delay: 0s;
+}
+
+.navbar {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.navbar-itembox {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: #d8d8d8 2px solid;
+    /* center me */
 }
 
 .banner{

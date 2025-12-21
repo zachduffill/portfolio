@@ -32,6 +32,7 @@
         }
         
         spaceGrid.style.transform = `translate(${-(0.5 * tileSize)}px)`;
+        spaceGrid.style.width = `calc(100% + ${0.5 * tileSize}px)`;
         tileGrid.style.backgroundColor = "transparent";
     }
 
@@ -42,7 +43,7 @@
         tile.className = "tile";
         space.className = "space";
 
-        const animSpeed = 10;
+        const animSpeed = 9;
         tile.style.setProperty('--i', String((distanceFromOriginTile/animSpeed)));
         space.style.setProperty('--i', String(((distanceFromOriginTile-1)/animSpeed)));
 
@@ -75,6 +76,7 @@
 
     #tile-grid, #space-grid {
         --tile-size: calc(var(--height) / 4);
+        --tile-flip-duration: 0.5s;
         overflow: hidden;
         display: grid;
         grid-auto-flow: column;
@@ -91,16 +93,16 @@
         background-color: black;
         aspect-ratio: 1 / 1;
         transform: rotateY(90deg);
-        animation: SpaceFlip 0.5s forwards;
-        animation-delay: calc(var(--i) * 1s + 0.5s);
+        animation: SpaceFlip var(--tile-flip-duration) forwards;
+        animation-delay: calc(var(--i) * 1s + var(--tile-flip-duration));
         backface-visibility: hidden;
     }
 
     :global(.tile) {
         background-color: var(--background-color);
         aspect-ratio: 1 / 1;
-        animation: TileFlip 0.5s forwards;
-        animation-delay: calc(var(--i) * 1s + 0.5s);
+        animation: TileFlip var(--tile-flip-duration) forwards;
+        animation-delay: calc(var(--i) * 1s + var(--tile-flip-duration));
         backface-visibility: hidden;
         box-sizing: border-box;
     }
@@ -109,10 +111,10 @@
         0% {
             background-color:var(--background-color);
         }
-        49.9% {
+        39.9% {
             background-color: var(--background-color);
         }
-        50% {
+        40% {
             background-color: transparent;
         }
         100% {
@@ -127,7 +129,7 @@
             transform: rotateY(90deg);
         }
 
-        50% {
+        40% {
             transform: rotateY(00deg);
         }
 

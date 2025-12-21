@@ -22,9 +22,8 @@
         spaceGrid.innerHTML = "";
         tileGrid.style.backgroundColor = "rgb(231, 231, 231)"; // to prevent flickering
 
-        const tileSize = (window.innerHeight*0.1)/rows; // px
+        const tileSize = (tileGrid.offsetHeight)/rows; // px
         const cols = Math.ceil(screen.width / tileSize);
-
 
         for (let c = 0; c < cols; c++) {
             for (let r = 0; r < rows; r++) {
@@ -32,6 +31,7 @@
             }
         }
         
+        spaceGrid.style.transform = `translate(${-(0.5 * tileSize)}px)`;
         tileGrid.style.backgroundColor = "transparent";
     }
 
@@ -42,9 +42,9 @@
         tile.className = "tile";
         space.className = "space";
 
-        const animSpeed = 8;
+        const animSpeed = 10;
         tile.style.setProperty('--i', String((distanceFromOriginTile/animSpeed)));
-        space.style.setProperty('--i', String(((distanceFromOriginTile-0.5)/animSpeed)));
+        space.style.setProperty('--i', String(((distanceFromOriginTile-1)/animSpeed)));
 
         tileGrid.appendChild(tile);
         spaceGrid.appendChild(space);

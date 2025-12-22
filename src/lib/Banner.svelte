@@ -2,10 +2,6 @@
     import { onMount } from "svelte";
     import { goto } from '$app/navigation';
 
-	function goTo(page: string) {
-		goto(page);
-	}
-
     export let language: 'en' | 'hu' = 'en';
 
     let tileGrid: HTMLDivElement;
@@ -19,20 +15,12 @@
         fillBanner();
     });
 
-    function switchLanguage() {
-        if (window.location.pathname.startsWith('/hu')) {
-            window.location.href = '/';
-        } else {
-            window.location.href = '/hu';
-        }
-    }
-
     function fillBanner() {
         tileGrid.innerHTML = "";
         spaceGrid.innerHTML = "";
 
         const tileSize = (tileGrid.offsetHeight)/rows; // px
-        const cols = Math.ceil(screen.width / tileSize);
+        const cols = Math.ceil(screen.width / tileSize)*1.5;
 
         for (let c = 0; c < cols; c++) {
             for (let r = 0; r < rows; r++) {
@@ -83,6 +71,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: left;
+        user-select:none;
+        pointer-events: none;
     }
 
     #banner > * {
@@ -122,6 +112,39 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #666666;
     }
+
+    /* .deer-container {
+        height: calc(var(--height) * 1.5);
+        width: calc(var(--height) * 0.92);
+        overflow: hidden;
+        margin-right: 1rem;
+        margin-left: auto;
+        pointer-events: auto; 
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .deer-container:hover {
+        width: var(--height);
+    }
+
+    .deer-container > img {
+        height: var(--height);
+        width: var(--height);
+        opacity: 0.4;
+        flex-shrink: 0;
+        max-width: none;
+        max-height: none;
+
+        pointer-events: none;
+        image-rendering: optimizeSpeed;
+        image-rendering: -moz-crisp-edges; 
+        image-rendering: -o-crisp-edges; 
+        image-rendering: -webkit-optimize-contrast; 
+        image-rendering: pixelated; 
+        image-rendering: optimize-contrast;              
+        -ms-interpolation-mode: nearest-neighbor; 
+    } */
  
     #banner-overlay{
         display: none;
@@ -204,13 +227,21 @@
         <div style="display:flex; flex-direction:row;">
             <h1>zach.hu</h1>
             {#if language === 'en'}
-            <button id="language-button" style="background-image: url('https://flagcdn.com/hu.svg')" type="button" on:click={() => fillBanner()} aria-label="nyelvváltás"></button>
+            <button id="language-button" style="background-image: url('https://flagcdn.com/hu.svg')" type="button" on:click={() => goto("/hu")} aria-label="nyelvváltás"></button>
             {:else}
-            <button id="language-button" style="background-image: url('https://flagcdn.com/en.svg')" type="button" on:click={() => goTo("/en")} aria-label="change language"></button>
+            <button id="language-button" style="background-image: url('https://flagcdn.com/gb.svg')" type="button" on:click={() => goto("/en")} aria-label="change language"></button>
             {/if}
         </div>
+        {#if language === 'en'}
         <h3>currently studying CSE @ Óbudai Egyetem</h3>
+        {:else}
+        <h3>mérnökinformatikus hallgató @ Óbudai Egyetem</h3>
+        {/if}  
     </dir>
+    <!-- <div class="deer-container" id="deer-container">
+        <img src="/content/deer.png" draggable="false" alt="deer"/>
+    </div>   -->
+    <!-- REPLACE deer with a cooler looking animated drawn pixelart animal sometime. -->
 </div>
 <div class="banner" id="banner-overlay" bind:this={bannerOverlay}></div>
 <div class="banner" id="tile-grid" bind:this={tileGrid}></div>

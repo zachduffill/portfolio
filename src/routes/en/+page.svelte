@@ -1,7 +1,8 @@
 <script>
     import Banner from '$lib/Banner.svelte';
+    import Card from '$lib/Card.svelte';
+    import Statusbar from '$lib/Statusbar.svelte';
 </script>
 
 <Banner language="en"/>
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<Statusbar language="en"/>

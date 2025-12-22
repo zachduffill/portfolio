@@ -31,8 +31,8 @@
         spaceGrid.style.transform = `translate(${-(0.5 * tileSize)}px)`;
         spaceGrid.style.width = `calc(100% + ${0.5 * tileSize}px)`;
 
-        bannerDiv.style.display = "flex";
-        bannerOverlay.style.display = "block";
+        bannerDiv.style.visibility = "visible";
+        bannerOverlay.style.visibility = "visible";
     }
 
     function createTileAndSpace(distanceFromOriginTile: number) {
@@ -52,6 +52,8 @@
 </script>
 
 <style>
+    /* Desktop */
+
     .banner{
         --height: max(15vh,80px);
         width: 100vw;
@@ -66,8 +68,9 @@
     #banner {
         background-color: white;
         position: relative;
+        visibility:hidden;
 
-        display: none; /* flex */
+        display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: left;
@@ -113,6 +116,14 @@
         color: #666666;
     }
 
+    /* Mobile */
+    @media (max-width: 767px) 
+    { 
+        #banner-title {
+            margin: auto; 
+        }
+    }
+
     /* .deer-container {
         height: calc(var(--height) * 1.5);
         width: calc(var(--height) * 0.92);
@@ -147,7 +158,8 @@
     } */
  
     #banner-overlay{
-        display: none;
+        display: block;
+        visibility: hidden;
         pointer-events: none;
         box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
     }

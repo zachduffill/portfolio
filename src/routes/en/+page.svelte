@@ -16,4 +16,4 @@
 
 <Banner language="en"/>
 <Statusbar language="en"/>
-<img src="https://web.archive.org/web/20091025145432im_/http://geocities.com/Area51/Nova/1466/underconstruction.gif" alt="">
+<!-- <img src="https://web.archive.org/web/20091025145432im_/http://geocities.com/Area51/Nova/1466/underconstruction.gif" alt=""> -->

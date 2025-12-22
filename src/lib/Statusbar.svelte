@@ -1,5 +1,8 @@
 <script>
     import Card from '$lib/Card.svelte';
+    import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
+    import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+    import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
     export let language;
 </script>
@@ -25,8 +28,9 @@
         gap: 1rem;
         padding: 0.5rem 1rem;
     }
-    :global(#links) * {
+    :global(#links *) {
         margin: auto;
+        font-size: 1rem;
     }
 
     /* Mobile */
@@ -36,7 +40,7 @@
             flex-direction: column;
         }
 
-        :global(#links) * {
+        :global(#links .icon) {
             font-size: 1.5rem;
         }
     }
@@ -54,9 +58,8 @@
         </span>
     </Card>
     <Card id="links">
-        <script src="https://kit.fontawesome.com/deff952479.js" crossorigin="anonymous"></script>
-        <a href="https://www.github.com/zachduffill" aria-label="github"><i class="fab fa-github" style="color: black;"></i></a>
-        <a href="https://www.linkedin.com/in/zachduffill" aria-label="linkedin"><i class="fab fa-linkedin" style="color: #0072b1;"></i></a>
-        <a href="mailto:zach.duffill@gmail.com" aria-label="email"><i class="fas fa-envelope" style="color: gray;"></i></a>
-</Card>
+        <a href="https://www.github.com/zachduffill" aria-label="github"><FontAwesomeIcon icon={faGithub} class="icon" style="color: black;" /></a>
+        <a href="https://www.linkedin.com/in/zachduffill" aria-label="linkedin"><FontAwesomeIcon icon={faLinkedin} class="icon" style="color: #0072b1;" /></a>
+        <a href="mailto:zach.duffill@gmail.com" aria-label="email"><FontAwesomeIcon icon={faEnvelope} class="icon" style="color: gray;" /></a>
+    </Card> 
 </div>

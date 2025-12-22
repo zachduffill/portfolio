@@ -2,6 +2,9 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 
+	import "@fortawesome/fontawesome-svg-core/styles.css";
+	import "$lib/fontawesome";
+
 	let { children } = $props();
 </script>
 

@@ -246,9 +246,9 @@
             {/if}
         </div>
         {#if language === 'en'}
-        <h3>currently studying CSE @ Óbudai Egyetem</h3>
+        <h3>CSE student @ Óbudai Egyetem</h3>
         {:else}
-        <h3>mérnökinformatikus hallgató @ Óbudai Egyetem</h3>
+        <h3>mérnökinformatikus hallgató @ ÓE</h3>
         {/if}  
     </dir>
     <!-- <div class="deer-container" id="deer-container">

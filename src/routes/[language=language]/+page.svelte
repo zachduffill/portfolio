@@ -11,6 +11,12 @@
         display: block;
         margin: 5rem auto;
     }
+
+    @media (max-width: 767px) {
+        img {
+            display: none;
+        }
+    }
 </style>
 
 <Statusbar language={language}/>

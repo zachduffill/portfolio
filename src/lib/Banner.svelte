@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import { goto } from '$app/navigation';
 
-    export let language: 'en' | 'hu' = 'en';
+    export let language;
 
     let tileGrid: HTMLDivElement;
     let spaceGrid: HTMLDivElement;
@@ -120,7 +120,8 @@
     @media (max-width: 767px) 
     { 
         #banner-title {
-            margin: auto; 
+            margin: auto;
+            padding: 0 1rem; 
         }
     }
 

@@ -48,14 +48,26 @@
 
 <div class="statusbar">
     <Card id="intro">
+        {#if language === 'en' }
         <span>
             i'm zach, a programmer from the uk living in budapest.
         </span>
+        {:else if language === 'hu'}
+        <span>
+            zach vagyok, egy brit programozó aki budapesten él.
+        </span>
+        {/if}
     </Card>
     <Card id="status">
+        {#if language === 'en' }
         <span>
             &gt; if i can find the time to finish any of my projects, you'll see them here, eventually...
         </span>
+        {:else if language === 'hu'}
+        <span>
+            &gt; ha sikerül időt szakítanom valamelyik projektem befejezésére, akkor azok végül itt lesznek láthatók...
+        </span>
+        {/if}
     </Card>
     <Card id="links">
         <a href="https://www.github.com/zachduffill" aria-label="github"><FontAwesomeIcon icon={faGithub} class="icon" style="color: black;" /></a>

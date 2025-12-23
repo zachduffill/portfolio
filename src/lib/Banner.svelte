@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { goto } from '$app/navigation';
+    import { page } from '$app/stores';
 
     export let language;
 
@@ -10,6 +11,12 @@
     let bannerDiv: HTMLDivElement;
     
     const rows = 4;
+
+    function changeLang(language: string) {
+        const path = $page.url.pathname;   
+        const truepath = path.split('/').slice(2).join('/'); 
+        goto(`/${language}/${truepath}`);
+    }
 
     onMount(() => {
         fillBanner();
@@ -240,9 +247,9 @@
         <div style="display:flex; flex-direction:row;">
             <h1>zach.hu</h1>
             {#if language === 'en'}
-            <button id="language-button" style="background-image: url('https://flagcdn.com/hu.svg')" type="button" on:click={() => goto("/hu")} aria-label="nyelvváltás"></button>
+            <button id="language-button" style="background-image: url('https://flagcdn.com/hu.svg')" type="button" on:click={() => changeLang("hu")} aria-label="nyelvváltás"></button>
             {:else}
-            <button id="language-button" style="background-image: url('https://flagcdn.com/gb.svg')" type="button" on:click={() => goto("/en")} aria-label="change language"></button>
+            <button id="language-button" style="background-image: url('https://flagcdn.com/gb.svg')" type="button" on:click={() => changeLang("en")} aria-label="change language"></button>
             {/if}
         </div>
         {#if language === 'en'}

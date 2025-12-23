@@ -12,12 +12,12 @@
         margin: 5rem auto;
     }
 
-    @media (max-width: 767px) {
+    /* @media (max-width: 767px) {
         img {
             display: none;
         }
-    }
+    } */
 </style>
 
 <Statusbar language={language}/>
-<img src="https://web.archive.org/web/20091025145432im_/http://geocities.com/Area51/Nova/1466/underconstruction.gif" alt="">
+<img src="https://blob.gifcities.org/gifcities/4XPS4EDI363KMKGGXAFUWOI4VISPE5AE.gif" alt="">

@@ -5,7 +5,7 @@ export function load({ url }) {
 
     if (path == "/cv")
     {
-        throw redirect(307, '/cv.pdf');
+        throw redirect(307, '/content/cv.pdf');
     }
 
     if (!path.startsWith('/en') && !path.startsWith('/hu'))
